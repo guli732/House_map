@@ -1,0 +1,121 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block layui-xtjs %}
+    layui-this
+{% endblock %}
+
+{% block body %}
+<div class="demoHeader">
+    <img src="{% static 'img/house.jpg' %}" alt="house">
+    <h1 class="layui-anim layui-anim-scaleSpring">
+        <span>欢迎使用住房分析检索系统</span>
+    </h1>
+    <div class="layui-row headerBanner">
+        <div class="layui-col-md8 layui-col-md-offset2 layui-anim layui-anim-upbit">
+            <div class="layui-col-md4 headerBannerItem">
+                <div class="layui-col-md5 headerBannerItemIcon">
+                    <svg viewBox="0 0 64 64">
+                        <path d="M59.549 17.018l-.566-.566L34.74 40.695A2.872 2.872 0 0 0 33 40.1a2.9 2.9 0 1 0 2.9 2.9 2.872 2.872 0 0 0-.595-1.74zM33 45.1a2.1 2.1 0 1 1 2.1-2.1 2.103 2.103 0 0 1-2.1 2.1zM3.9 35.977a27.928 27.928 0 0 0 8.208 19.85l-.566.566a28.905 28.905 0 1 1 41.611-40.12l-.585.547A28.104 28.104 0 0 0 3.9 35.977zM52.298 56.56l-.562-.57c8.225-8.128 10.59-20.104 6.171-31.252l.744-.295c4.539 11.452 2.105 23.758-6.353 32.117zM49.9 53.284l-.27.279-6.642-6.035.538-.591 6.067 5.51a24.295 24.295 0 0 0 5.08-24.893l.758-.258a25.072 25.072 0 0 1-5.53 25.988zm-34.127-35.11l6.21 6.21-.566.565-6.223-6.223A24.025 24.025 0 0 0 7.922 35.1H17v.8H7.902l-.002.076a23.941 23.941 0 0 0 6.758 16.735l5.807-5.806.565.565-6.375 6.375-.283-.283a24.9 24.9 0 1 1 35.958-34.44l-.59.542a24.175 24.175 0 0 0-15.84-7.705V19h-.8v-7.096a23.903 23.903 0 0 0-1.1-.029 24.006 24.006 0 0 0-16.227 6.299z"></path>
+                    </svg>
+                </div>
+                <div class="layui-col-md7 headerBannerItemText">
+                    <h4>数据全</h4>
+                    <p>利用Python爬取房源，全网房源，汇聚一处。</p>
+                </div>
+            </div>
+            <div class="layui-col-md4 headerBannerItem">
+                <div class="layui-col-md5 headerBannerItemIcon">
+                    <svg viewBox="0 0 64 64">
+                        <path d="M36.9 30.9h5v-5.936l-5-6.057V11.22c0-5.332-4.463-8.887-4.653-9.036L32 1.992l-.247.193c-.19.149-4.653 3.704-4.653 9.036v7.686l-5 6.057V30.9h14.8zm4.2-5.649v4.85h-4.2v-9.937zm-13.2-14.03c0-4.242 3.18-7.377 4.1-8.196.92.82 4.1 3.954 4.1 8.196V30.1h-8.2zm-5 18.88v-4.85l4.2-5.087V30.1zM41.1 40h.8v3h-.8zm.8-3h-.8v-5h.8zm-19 2h-.8v-7h.8zm2.2-4v-3h.8v3zm12 1v-4h.8v4zm-3 9V32h.8v13zm-4 3V32h.8v16zm28.62 2.979a6.432 6.432 0 0 0-.46-1.164 5.28 5.28 0 0 0-9.52 4.569 4.325 4.325 0 0 0-.42.343 4.435 4.435 0 0 0-.405.508 4.29 4.29 0 0 0-4.733.634c.015-.165.045-.327.05-.494a7.063 7.063 0 0 0-14.118-.452 4.242 4.242 0 0 0-4.487-1.257 7.003 7.003 0 0 0-7.999-5.437A8.397 8.397 0 0 0 .133 50.452 8.531 8.531 0 0 0 2.3 56.13a3.743 3.743 0 0 0-.935 2.467 3.515 3.515 0 0 0 1.307 2.788 2.887 2.887 0 0 0 1.78.61 3.18 3.18 0 0 0 .76-.095h50.594l2.127-.005a4.747 4.747 0 0 0 3.923-1.06 5.42 5.42 0 0 0 1.877-4.169 5.756 5.756 0 0 0-5.013-5.687zm2.62 9.246A4.04 4.04 0 0 1 58 61.1H5.162l-.102.013a2.15 2.15 0 0 1-1.9-.362 2.712 2.712 0 0 1-.995-2.154 2.955 2.955 0 0 1 .692-1.894 8.536 8.536 0 0 0 5.852 2.325v-.8a7.785 7.785 0 0 1-7.776-7.776 7.597 7.597 0 0 1 14.913-2.055 7.073 7.073 0 0 0-5.179 6.803h.8a6.256 6.256 0 0 1 12.392-1.226 4.388 4.388 0 0 0-2.392 3.893h.8a3.6 3.6 0 1 1 7.2 0h.8a4.368 4.368 0 0 0-.367-1.749V55.2a6.267 6.267 0 1 1 12.199 2.027l.014.005a4.345 4.345 0 0 0-.483 1.962h.8a3.6 3.6 0 1 1 7.2 0h.8a4.386 4.386 0 0 0-1.824-3.55 3.584 3.584 0 0 1 6.182.893l.746-.288a4.38 4.38 0 0 0-6.115-2.3 4.484 4.484 0 0 1 8.13-3.77 5.689 5.689 0 0 1 .466 1.263l.068.284.291.022a4.95 4.95 0 0 1 4.56 4.919 4.623 4.623 0 0 1-1.595 3.558z"></path>
+                    </svg>
+                </div>
+                <div class="layui-col-md7 headerBannerItemText">
+                    <h4>挖掘位置</h4>
+                    <p>充分挖掘普通房屋信息中的位置要素，从地理信息维度筛选您真正需要的。</p>
+                </div>
+            </div>
+            <div class="layui-col-md4 headerBannerItem">
+                <div class="layui-col-md5 headerBannerItemIcon">
+                    <svg viewBox="0 0 64 64">
+                        <path d="M48.798 25.46c-.819-6.988-6.675-12.027-14.048-12.027a13.768 13.768 0 0 0-12.388 6.869A8.63 8.63 0 0 0 10.975 28.5c0 .18.006.357.018.534A11.398 11.398 0 0 0 15.5 50.9h31.624A12.804 12.804 0 0 0 59.9 38.163 12.74 12.74 0 0 0 48.798 25.46zM47.123 50.1H15.5a10.597 10.597 0 0 1-3.936-20.437l.278-.111-.029-.298a8 8 0 0 1-.038-.754 7.834 7.834 0 0 1 10.635-7.332l.332.126.165-.315a12.946 12.946 0 0 1 11.843-6.746c7.064 0 12.651 4.89 13.286 11.624l.03.327.326.034A11.975 11.975 0 0 1 47.123 50.1zM19.995 23.104v.801A4.1 4.1 0 0 0 15.9 28h-.8a4.9 4.9 0 0 1 4.895-4.896z"></path>
+                    </svg>
+                </div>
+                <div class="layui-col-md7 headerBannerItemText">
+                    <h4>易于使用</h4>
+                    <p>运用现代化技术手段，结合合理的功能编排，为您呈现用户友好型系统。</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="demoList">
+    <div class="listItem layui-anim layui-anim-up">
+        <div class="layui-row">
+            <div class="layui-col-md6 layui-col-md-offset3">
+                <div class="layui-col-md6 itemImg">
+                    <a href="{% url 'map_view' %}">
+                        <img src="{% static 'img/list-item/one.png' %}" alt="住房地理检索">
+                    </a>
+                </div>
+                <div class="layui-col-md6 itemText">
+                    <div class="layui-col-md12 itemTitle">
+                        <h2>
+                            <a href="{% url 'map_view' %}" target="_blank">住房地理检索</a>
+                        </h2>
+                    </div>
+                    <div class="layui-col-md12 itemDesc">
+                        <p>从传统的住房租售数据中进行位置数据挖掘，结合现代化的地理分析及可视化库，立足于住房租售中最为关切的地理视角，筛选出最合适的住房。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="listItem layui-anim layui-anim-up">
+        <div class="layui-row">
+            <div class="layui-col-md6 layui-col-md-offset3">
+                <div class="layui-col-md6 itemImg">
+                    <a href="{% url 'other_view' %}">
+                        <img src="{% static 'img/list-item/two.png' %}" alt="住房可视化展示">
+                    </a>
+                </div>
+                <div class="layui-col-md6 itemText">
+                    <div class="layui-col-md12 itemTitle">
+                        <h2>
+                            <a href="{% url 'other_view' %}" target="_blank">
+                                住房可视化展示
+                            </a>
+                        </h2>
+                    </div>
+                    <div class="layui-col-md12 itemDesc">
+                        <p>采用大屏可视化的方式对太原地区的住房数据进行可视化展示，从大数据角度揭示住房的相关数据，数据展示更加直观。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{#    <div class="listItem layui-anim layui-anim-up">#}
+{#        <div class="layui-row">#}
+{#            <div class="layui-col-md6 layui-col-md-offset3">#}
+{#                <div class="layui-col-md6 itemImg">#}
+{#                    <a href="{% url 'view_msg' %}">#}
+{#                        <img src="{% static 'img/list-item/ztlt.jpg' %}" alt="住房可视化分析">#}
+{#                    </a>#}
+{#                </div>#}
+{#                <div class="layui-col-md6 itemText">#}
+{#                    <div class="layui-col-md12 itemTitle">#}
+{#                        <h2>#}
+{#                            <a href="{% url 'view_msg' %}" target="_blank">#}
+{#                                住房可视化分析#}
+{#                            </a>#}
+{#                        </h2>#}
+{#                    </div>#}
+{#                    <div class="layui-col-md12 itemDesc">#}
+{#                        <p>结合住房数据的可视化展示，对当前的住房数据做出分析。</p>#}
+{#                    </div>#}
+{#                </div>#}
+{#            </div>#}
+{#        </div>#}
+{#    </div>#}
+</div>
+{% endblock %}

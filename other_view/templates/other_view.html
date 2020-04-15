@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block headextend %}
+    <script src="{% static 'js/echars.min.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'css/other.css' %}">
+{% endblock %}
+
+{% block body %}
+<div id="test">
+    <div id="one"></div>
+    <div id="two"></div>
+    <div id="three"></div>
+    <div id="four"></div>
+</div>
+{% endblock %}
+
+{% block footerextend %}
+    <script src="{% static 'js/other.js' %}"></script>
+{% endblock %}

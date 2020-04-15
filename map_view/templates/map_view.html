@@ -1,0 +1,255 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>住房地理检索</title>
+    <link rel="shortcut icon" href="{% static 'img/favicon.ico' %}"/>
+    <link rel="stylesheet" href="{% static 'lib/layui/css/layui.css' %}">
+    <link rel="stylesheet" href="{% static 'bootstrap-3.3.7/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/gis.css' %}"/>
+    <link rel="stylesheet" href="https://a.amap.com/jsapi_demos/static/demo-center/css/demo-center.css"/>
+    <link rel="stylesheet" href="https://cache.amap.com/lbs/static/jquery.range.css"/>
+</head>
+<body>
+<div class="layui-fluid">
+    <div class="layui-row">
+        <div class="headerContainer">
+            <div class="title">
+                <a href="{% url 'map_view' %}">住房地理检索</a>
+            </div>
+        </div>
+    </div>
+    <div class="layui-row">
+        <div class="layui-row">
+            <div class="searchLabel">
+                条件筛选：
+            </div>
+        </div>
+        <div class="layui-row">
+            <div class="searchContent layui-form">
+                <div class="layui-form-item">
+                    {% csrf_token %}
+                    <div class="layui-inline">
+                        <select name="city" lay-verify="" class="city">
+                            <option value="">请选择区域</option>
+                            <option value="迎泽区">迎泽区</option>
+                            <option value="小店区">小店区</option>
+                            <option value="晋源区">晋源区</option>
+                            <option value="杏花岭区">杏花岭区</option>
+                            <option value="尖草坪区">尖草坪区</option>
+                            <option value="万柏林区">万柏林区</option>
+                        </select>
+                    </div>
+                    <div class="layui-inline">
+                        <label class="layui-form-label">单价：</label>
+                        <div class="layui-input-inline" style="width: 85px;">
+                            <input type="text" placeholder="￥/㎡" class="layui-input price1" name="price1"/>
+                        </div>
+                        <div class="layui-form-mid">-</div>
+                        <div class="layui-input-inline" style="width: 85px;">
+                            <input type="text" placeholder="￥/㎡" class="layui-input price2" name="price2"/>
+                        </div>
+                    </div>
+                    <div class="layui-inline">
+                        <label class="layui-form-label">总价：</label>
+                        <div class="layui-input-inline" style="width: 85px;">
+                            <input type="text" placeholder="￥" class="layui-input totalprice1" name="totalprice1"/>
+                        </div>
+                        <div class="layui-form-mid">-</div>
+                        <div class="layui-input-inline" style="width: 85px;">
+                            <input type="text" placeholder="￥" class="layui-input totalprice2" name="totalprice2"/>
+                        </div>
+                    </div>
+                    <div class="layui-inline">
+                        <label class="layui-form-label">朝向：</label>
+                        <div class="layui-input-inline" style="width: 120px;">
+                            <select class="direction" name="direction" lay-verify="">
+                                <option value="">请选择朝向</option>
+                                <option value="东">东</option>
+                                <option value="西">西</option>
+                                <option value="南">南</option>
+                                <option value="北">北</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="layui-inline">
+                        <label class="layui-form-label">户型：</label>
+                        <div class="layui-input-inline" style="width: 120px;">
+                            <select class="house_type" name="house_type" lay-verify="">
+                                <option value="">请选择户型</option>
+                                <option value="1室1厅">1室1厅</option>
+                                <option value="2室1厅">2室1厅</option>
+                                <option value="3室1厅">3室1厅</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="layui-inline">
+                        <label class="layui-form-label">面积：</label>
+                        <div class="layui-input-inline" style="width: 85px;">
+                            <input type="text" placeholder="㎡" class="layui-input house_area1" name="house_area1"/>
+                        </div>
+                        <div class="layui-form-mid">-</div>
+                        <div class="layui-input-inline" style="width: 85px;">
+                            <input type="text" placeholder="㎡" class="layui-input house_area2" name="house_area2"/>
+                        </div>
+                    </div>
+                    <div class="layui-inline">
+                        <button type="submit" class="layui-btn" id="searchBtn">
+                            <i class="layui-icon layui-icon-search"></i> 开始搜索
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="layui-row">
+        <div class="layui-col-md3 left_msg" id="left_msg">
+            {% for house_data in page_of_house.object_list %}
+                <div class="layui-row resultsItem" id="999">
+                    <div class="layui-col-md3">
+                        <img src="{{ house_data.img }}" alt="暂无照片" class="resultsItemImg"
+                             referrerpolicy="no-referrer"/>
+                    </div>
+                    <div class="layui-col-md9" style="padding-left: 15px;">
+                        <div class="resultsItemTitle">
+                            {{ house_data.title }}
+                        </div>
+                        <div class="resultsItemXiaoqu">
+                            <div class="layui-col-md6">
+                                <div class="resultsItemName">
+                                    <i class="layui-icon layui-icon-home"></i>&nbsp; {{ house_data.name }}
+                                </div>
+                            </div>
+                            <div class="layui-col-md6">
+                                <div class="resultsItemArea">
+                                    面积：{{ house_data.house_area }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="layui-row resultsJiageContainer">
+                            <div class="layui-col-md6">
+                                <div class="resultsItemDanjia">
+                                    单价：{{ house_data.price }}元/平米
+                                </div>
+                            </div>
+                            <div class="layui-col-md6">
+                                <div class="resultsItemZongjia">
+                                    总价：{{ house_data.totalprice }}万
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+            <div id="resultDiv">
+            </div>
+
+            <div class="layui-row">
+                <div id="page">
+                </div>
+                {#                        <div class="page">#}
+                {#                            <ul class="pagination">#}
+                {# 上一页 #}
+                {#                            <li>#}
+                {#                                {% if page_of_house.has_previous %}#}
+                {#                                    <a href="?page={{ page_of_house.previous_page_number }}" aria-label="Previous">#}
+                {#                                        <span aria-hidden="true">&laquo;</span>#}
+                {#                                    </a>#}
+                {#                                {% else %}#}
+                {#                                    <span aria-hidden="true">&laquo;</span>#}
+                {#                                {% endif %}#}
+                {#                            </li>#}
+                {# 全部页码 #}
+                {#                            {% for page_num in page_range %}#}
+                {#                                {% if page_num == page_of_house.number %}#}
+                {#                                    <li class="active"><a href="?page={{ page_num }}">{{ page_num }}</a></li>#}
+                {#                                {% else %}#}
+                {#                                    {% if page_num == '...' %}#}
+                {#                                        <li><span>{{ page_num }}</span></li>#}
+                {#                                    {% else %}#}
+                {#                                        <li><a href="?page={{ page_num }}">{{ page_num }}</a></li>#}
+                {#                                    {% endif %}#}
+                {#                                {% endif %}#}
+                {#                            {% endfor %}#}
+                {# 下一页 #}
+                {#                            <li>#}
+                {#                                {% if page_of_house.has_next %}#}
+                {#                                    <a href="?page={{ page_of_house.next_page_number }}" aria-label="Next">#}
+                {#                                        <span aria-hidden="true">&raquo;</span>#}
+                {#                                    </a>#}
+                {#                                {% else %}#}
+                {#                                    <span aria-hidden="true">&raquo;</span>#}
+                {#                                {% endif %}#}
+                {#                            </li>#}
+                {#                        </ul>#}
+                {#                        </div>#}
+            </div>
+        </div>
+        <div class="layui-col-md9">
+            <div id="mapDiv">
+            </div>
+        </div>
+        <div class="input-card" style='width:25rem;'>
+            <h4 style='color:grey'>公交到达圈查询</h4>
+            <div class="input-item">
+                <div class="input-item-prepend"><span class="input-item-text">出发位置</span></div>
+                <input id='lnglat' type="text" value='112.5684,37.8171'>
+            </div>
+            <div class="input-item" style='margin-bottom:2rem;'>
+                <label>时长(分钟)</label>
+                <input type="hidden" id="t" class="single-slider" value="30"/>
+            </div>
+
+            <div class="input-item">
+                <div class="input-item-prepend">
+                    <label class="input-item-text">出行方式</label>
+                </div>
+                <select iname="v" id="v">
+                    <option selected value="SUBWAY,BUS">地铁+公交</option>
+                    <option value="SUBWAY">地铁</option>
+                    <option value="BUS">公交</option>
+                </select>
+                <input id="search" type="button" class="btn" value="查询"/>
+                <input id="clear" type="button" class="btn" value="清除"/>
+            </div>
+        </div>
+        {#        <div class="input-card">#}
+        {#            <h4 style='color:grey'>公交到达圈查询</h4>#}
+        {#            <div class="input-group">#}
+        {#                <span class="input-group-addon" id="basic-addon1">出发位置</span>#}
+        {#                <input id="lnglat" type="text" class="form-control" placeholder="太原市小店区"#}
+        {#                       aria-describedby="basic-addon1" value="116.358356,39.937315">#}
+        {#            </div>#}
+        {#            <div class="input-item" style='margin-bottom:2rem;'>#}
+        {#                <label>时长(分钟)</label>#}
+        {#                <input type="hidden" id="t" class="single-slider" value="30" />#}
+        {#            </div>#}
+        {#            <div class="input-group">#}
+        {#                <span class="input-group-addon">出行方式</span>#}
+        {#                <select iname="v" id="v" class="form-control">#}
+        {#                    <option selected value="SUBWAY,BUS">地铁+公交</option>#}
+        {#                    <option value="SUBWAY">地铁</option>#}
+        {#                    <option value="BUS">公交</option>#}
+        {#                </select>#}
+        {#            </div>#}
+        {#            <input id="search" type="button" class="btn btn-info" value="查询"/>#}
+        {#            <input id="clear" type="button" class="btn btn-success" value="清除"/>#}
+        {#        </div>#}
+    </div>
+</div>
+<script src="{% static 'lib/layui/layui.js' %}"></script>
+<script type="text/javascript"
+        src="https://webapi.amap.com/maps?v=1.4.15&key=2bffdbaf2da2cc53255895febfce8fa5&plugin=AMap.Geocoder"></script>
+<script src="https://webapi.amap.com/maps?v=1.4.15&key=2bffdbaf2da2cc53255895febfce8fa5"></script>
+<script src="https://webapi.amap.com/maps?v=1.4.15&key=2bffdbaf2da2cc53255895febfce8fa5&plugin=AMap.ArrivalRange"></script>
+<script src="{% static 'js/gis.js' %}"></script>
+<script src="{% static 'js/ajax_test.js' %}"></script>
+<script type="text/javascript" src="{% static 'jquery-1.12.4.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'bootstrap-3.3.7/js/bootstrap.min.js' %}"></script>
+<script src="https://cache.amap.com/lbs/static/jquery-1.9.1.js"></script>
+<script src="https://cache.amap.com/lbs/static/jquery.range.js"></script>
+</body>
+</html>

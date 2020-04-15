@@ -1,0 +1,41 @@
+.layui-body,
+.layui-layout-admin .layui-footer {
+  left: 0;
+}
+
+.layui-layout-admin .layui-body {
+  bottom: 33px;
+}
+
+/* logo */
+.layui-logo {
+  width: 280px !important;
+}
+
+.layui-logo img:hover {
+  cursor: pointer;
+}
+
+.layui-layout-admin .layui-logo {
+  left: 360px;
+}
+
+/* 导航 */
+.layui-layout-right {
+  right: 360px;
+}
+
+/* 底部 */
+.layui-layout-admin .layui-footer {
+  background-color: #2f4056;
+  text-align: center;
+  height: 33px;
+  line-height: 36px;
+}
+
+.layui-layout-admin .layui-body {
+  bottom: 0;
+}
+.layui-footer span {
+  color: #bdbec1;
+}
