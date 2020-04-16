@@ -25,7 +25,7 @@ SECRET_KEY = '3m6-2aupp-gjdg0r&)7__ci%rm-$8w_+dxbsqp@st*c(ird()c'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['dashen732.top']
 
 
 # Application definition
