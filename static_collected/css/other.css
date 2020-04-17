@@ -1,0 +1,28 @@
+#test #one {
+    width: 600px;
+    height: 500px;
+    float: left;
+    margin-top: 50px;
+    margin-left: 120px;
+    margin-right: 50px;
+    /*background-color: #2e6da4;*/
+}
+#test #two {
+    width: 800px;
+    height: 500px;
+    float: right;
+    margin-top: 50px;
+    margin-left: 50px;
+    margin-right: 120px;
+    /*background-color: #3c763d;*/
+}
+#test #three {
+    /*width: 1200px;*/
+    width: 70%;
+    height: 600px;
+    float: left;
+    margin-top: 80px;
+    margin-left: 200px;
+    margin-right: 200px;
+    /*background-color: #2b542c;*/
+}
