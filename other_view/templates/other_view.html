@@ -3,18 +3,48 @@
 
 {% block headextend %}
     <script src="{% static 'js/echars.min.js' %}"></script>
-    <link rel="stylesheet" href="{% static 'css/other.css' %}">
+    {#    <link rel="stylesheet" href="{% static 'css/other.css' %}">#}
 {% endblock %}
 
 {% block body %}
-<div id="test">
-    <div id="one"></div>
-    <div id="two"></div>
-    <div id="three"></div>
-    <div id="four"></div>
-</div>
+    <div class="chartsDiv" style="padding: 20px; background-color: #f2f2f2;">
+        <div class="layui-row layui-col-space15">
+            <div class="layui-col-md6 layui-anim layui-anim-scale">
+                <div class="layui-card">
+{#                    <div class="layui-card-header">标题</div>#}
+                    <div class="layui-card-body">
+                        <div id="one" style="height: 500px"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="layui-col-md6 layui-anim layui-anim-scale">
+                <div class="layui-card">
+{#                    <div class="layui-card-header">标题</div>#}
+                    <div class="layui-card-body">
+                        <div id="two" style="height: 500px"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="layui-col-md12 layui-anim layui-anim-scale">
+                <div class="layui-card">
+                    <div class="layui-card-header">标题</div>
+                    <div class="layui-card-body">
+                        <div id="three" style="height: 500px"></div>
+                    </div>
+                </div>
+            </div>
+            {#                <div class="layui-col-md6 layui-anim layui-anim-scale">#}
+            {#                    <div class="layui-card">#}
+            {#                        <div class="layui-card-header">标题</div>#}
+            {#                        <div class="layui-card-body">#}
+            {#                            内容#}
+            {#                        </div>#}
+            {#                    </div>#}
+            {#                </div>#}
+        </div>
+    </div>
 {% endblock %}
 
 {% block footerextend %}
-    <script src="{% static 'js/other.js' %}"></script>
+    <script src="{% static 'js/other_view.js' %}"></script>
 {% endblock %}
