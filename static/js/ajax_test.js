@@ -36,7 +36,9 @@ layui.use('laypage', function () {
         for (let i = 0; i < datas.length; i++) {
             var name = datas[i].name;
             var address = '山西省太原市' + name;
-            geocoder.getLocation(address, function (status, result) {
+
+            function test(address, name) {
+                geocoder.getLocation(address, function (status, result) {
                     if (status === 'complete' && result.info === 'OK') {
                         var lnglat = result.geocodes[0].location;
                         // 经度
@@ -45,14 +47,35 @@ layui.use('laypage', function () {
                         lat = lnglat['lat'];
                         var marker = new AMap.Marker({
                             position: new AMap.LngLat(lng, lat),
-                            // title: name,
+                            title: name,
                             bubble: true,
                         });
                         map.add(marker);
                     }
-                }
-            )
+                });
+            }
+
+            test(address, name);
         }
+
+        // geocoder.getLocation(address, function (status, result) {
+        //         if (status === 'complete' && result.info === 'OK') {
+        //             var lnglat = result.geocodes[0].location;
+        //             // 经度
+        //             lng = lnglat['lng'];
+        //             // 纬度
+        //             lat = lnglat['lat'];
+        //             var marker = new AMap.Marker({
+        //                 position: new AMap.LngLat(lng, lat),
+        //                 // title: name,
+        //                 bubble: true,
+        //             });
+        //             map.add(marker);
+        //         }
+        //     }
+        // )
+        //     }
+        // }
     }
 
     function fenye(data) {
